@@ -1,25 +1,26 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import Configuration from "./Configuration";
+import Users from "./Users";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+import Navbar from "./Navbar";
+
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        axios.get("https://jsonplaceholder.typicode.com/users")
-            .then(res => {
-                console.log();
-            })
-    }
-
     render() {
         return (
-            <div className="container">
-
-                <h1>Aplikacja</h1>
-            </div>
+            <Router>
+                <div className="container" style={{position: 'relative'}}>
+                    <Navbar/>
+                    <br/>
+                    <Route exact path="/configuration" component={Configuration}/>
+                    <Route exact path="/users" component={Users}/>
+                </div>
+            </Router>
         );
     }
 }
